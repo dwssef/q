@@ -170,7 +170,9 @@ class Q(object):
             content = ''.join(chunks)
 
             now = self.time.time()
-            prefix = '%4.1fs ' % ((now - self.start_time) % 100)
+            timestamp = self.time.strftime('%Y-%m-%d %H:%M:%S', self.time.localtime(now))
+            elapsed = (now - self.start_time) % 100
+            prefix = f'[{timestamp}] ({elapsed:4.1f}s ) '
             indent = ' ' * len(prefix)
             if self.color:
                 prefix = self.YELLOW + prefix + self.NORMAL
